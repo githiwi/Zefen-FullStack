@@ -1,12 +1,20 @@
 import { Schema, model } from "mongoose";
-const songSchema = new Schema({
-  title: String,
-  artist: String,
-  image: String,
-  music: String
+
+const artistSchema = new Schema({
+  firstName: String,
+  lastName: String,
+  songs: [{ type: Schema.Types.ObjectId, ref: "song" }], //array of object Id's (in this case _id of songs documents)
+  artistImage: String,
 });
 
-const zefenSchema = new Schema({
+const songSchema = new Schema({
+  title: String,
+  artists: [{ type: Schema.Types.ObjectId, ref: "artist" }],
+  musicUrl: String,
+  gener: { type: Schema.Types.ObjectId, ref: "gener" },
+});
+
+const generSchema = new Schema({
   category: {
     type: String,
     enum: {
@@ -15,8 +23,9 @@ const zefenSchema = new Schema({
     },
   },
   description: String,
-  song: [songSchema],
 });
 
-const Zefen = model("zefen", zefenSchema);
-export default Zefen;
+const Gener = model("gener", generSchema);
+const Song = model("song", songSchema);
+const Artist = model("artist", artistSchema);
+export default { Gener, Song, Artist };
