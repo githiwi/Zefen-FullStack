@@ -2,8 +2,8 @@ import { Schema, model } from "mongoose";
 const songSchema = new Schema({
   title: String,
   artist: String,
-  //image:
-  //music:
+  image: String,
+  music: String
 });
 
 const zefenSchema = new Schema({
