@@ -1,26 +1,25 @@
 import { StatusCodes } from "http-status-codes";
-import Zefen from "../models/Zefen.js";
+import Song from "../models/Zefen.js";
 
 export const getListOfZefen = async (req, res) => {
-  const Zefens = await Zefen.find();
-  return res.status(StatusCodes.OK).json(Zefens);
+  const songs = await Song.find();
+  return res.status(StatusCodes.OK).json(songs);
 };
 
-export const createMusicFiles = async (req, res) => {
+export const createMusicGener = async (req, res) => {
   try {
-    const bati = await Zefen.create({
+    const createdGener = await Song.create({
       category: req.body.category,
       description: req.body.description,
-      song: req.body.song,
     });
     return res
-      .status(StatusCodes.CREATED)
-      .json({ message: "zefen file  was created", createMusicFiles: bati });
+      .status(StatusCodes.OK)
+      .json({ message: "gener creted", createdGener });
   } catch (error) {
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
-      .json({ message: "Error happened", error: error.toString() });
+      .json({ message: error.toString() });
   }
 };
 
-export default { getListOfZefen };
+export default { getListOfZefen, createMusicGener };

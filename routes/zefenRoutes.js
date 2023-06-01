@@ -1,11 +1,11 @@
 import express from "express";
 import {
   getListOfZefen,
-  createMusicFiles,
+  createMusicGener,
 } from "../controllers/zefenController.js";
 
 const route = express.Router();
 route.get("/all", getListOfZefen);
-route.post("/create", createMusicFiles);
+route.post("/createGener", createMusicGener);
 
 export default route;

@@ -22,4 +22,5 @@ route.post("/signup", createUser);
 //post http://localhost:4000/api/users/signin
 route.post("/signin", logInUser);
 route.get("/sighout", logoutUser);
+
 export default route;
