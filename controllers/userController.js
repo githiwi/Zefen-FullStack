@@ -26,6 +26,56 @@ export const createUser = async (req, res) => {
   }
 };
 
-export const logInUser = async(req,res)=>{
+export const logInUser = async (req, res) => {
+  try {
+    const user = await User.findOne({ userName: req.body.userName });
 
-}
+    //does this user name exist?
+    if (!user) {
+      return res
+        .status(StatusCodes.UNAUTHORIZED)
+        .json({ message: "User not authorized." });
+    }
+    // if there is user let's check if the password is matching with the password provided by that user?
+    const checkPassword = await bcrypt.compare(
+      req.body.password,
+      user.password
+    );
+    if (!checkPassword) {
+      return res
+        .status(StatusCodes.UNAUTHORIZED)
+        .json({ message: "User not authorized." });
+    }
+
+    ///generate our token
+    const token = generateToken(user);
+
+    return res
+      .status(StatusCodes.OK)
+      .cookie("jwt", token, {
+        //ESSENTIAL cookie --> keep track of who is signed in. (storing token)
+        httpOnly: true, //no scripting languages can access this cookie
+        secure: false, //cookie can only be sent over https SSL/TLS, --> encrypted connection with server
+        sameSite: "lax", //not allowing cookie over cross-site request (when loading images)
+      })
+      .json({
+        message: "login successfull",
+        // we are sending the user as an object with only selected keys
+        user: { username: user.userName },
+      });
+  } catch (error) {
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: error.toString() });
+  }
+};
+
+export const logoutUser = (req, res) => {
+  res
+    .clearCookie("jwt", {
+      httpOnly: true,
+      sameSite: "lax",
+      secure: false,
+    })
+    .send("User is logged out");
+};
