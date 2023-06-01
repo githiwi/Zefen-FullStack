@@ -20,7 +20,7 @@ mongoose
     console.log("🤨");
   });
 
-app.use("/zefens", zefenRoutes);
-app.use("/users", userRoute);
+app.use("/api/zefens", zefenRoutes);
+app.use("/api/users", userRoute);
 
 app.listen(4000, () => console.log("Server is listening for requests."));
