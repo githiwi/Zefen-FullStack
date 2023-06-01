@@ -1,0 +1,41 @@
+.navs {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap; /* wrap the content if it is too long */
+  background-repeat: no-repeat;
+  background-color: #beafc2;
+  /* background-color: #EDD1B9; */
+  opacity: 0.7;
+  padding: 0.5rem;
+  top: 0;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-size: large;
+}
+/* to remove the underline from the text */
+.links a {
+  text-decoration: none;
+  color: #574480;
+}
+h1 {
+  color: #574480;
+}
+
+/* media query is written here */
+@media (max-width: 700px) {
+  .navs {
+    display: flex;
+    flex-direction: column;
+  }
+  .links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}

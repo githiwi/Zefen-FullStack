@@ -1,0 +1,32 @@
+.detailrelative {
+  position: relative;
+}
+
+.detail {
+  position: absolute;
+  left: 70rem;
+  color: #574480;
+  box-shadow: 5px 5px 15px 5px purple;
+  opacity: 0.5;
+  background-color: #beafc2;
+  border: 1rem;
+  padding: 5rem;
+  margin: 2rem 2rem;
+  border-radius: 5%;
+}
+
+h2 {
+  text-align: center;
+  padding: 0.5rem;
+}
+p {
+  padding: 3rem;
+}
+.artiImage img {
+  width: 10vw;
+  height: 15vh;
+  border-radius: 50%;
+}
+li {
+  list-style: none;
+}

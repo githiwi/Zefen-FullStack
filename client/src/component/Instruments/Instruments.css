@@ -1,0 +1,20 @@
+.innstrumets1 {
+  height: 100vh;
+  position: relative;
+}
+
+.innstrumets {
+  left: 6rem;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  color: #574480;
+}
+img {
+  border-radius: 60%;
+  background-color: #9388a2;
+  opacity: 0.5;
+}
+p {
+  border: #9388a2 solid 0.5px;
+}

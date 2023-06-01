@@ -1,0 +1,11 @@
+.footers {
+  /* background-color: #beafc2; */
+  background-color: #edd1b9;
+  text-align: center;
+  padding: 1.5rem;
+
+  opacity: 0.3;
+}
+h4 {
+  color: #574480;
+}
