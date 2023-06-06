@@ -10,6 +10,7 @@ import Instruments from "./component/Instruments/Instruments";
 import Search from "./component/Search/Search";
 import artistDetailData from "./component/Search/ArtistDetailData";
 import LoginView from './component/Home/LoginView'
+import SignupForm from "./component/SignUp/SignUp";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         />
         <Route path="/details/:genrename" element={<Details />} />
         <Route path="/signin" element={<LoginView/>}/>
+        <Route path="/signup" element={<SignupForm/>}/>
         <Route path="*" element={<div> 404 page not found </div>} />
       </Routes>
       {/* <Footer /> */}

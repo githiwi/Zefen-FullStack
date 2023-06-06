@@ -14,6 +14,7 @@ export default function Header() {
       <Link className="p-2 text-dark" to="/instruments">Instruments</Link>
       <Link className="p-2 text-dark" to="/about">About</Link>
       <Link className="btn btn-outline-info me-md-2" to="/signin">Login</Link>
+      <Link className="btn btn-outline-info me-md-2" to="/signup">Signup</Link>
     </nav>
   </div>
     // <div className="navs">
