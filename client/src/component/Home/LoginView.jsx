@@ -13,8 +13,9 @@ export default function LoginView() {
       password: formData.get("password"),
     };
 
-    try {
-      const res = await axios.post("/api/users/signin", data);
+    try {  
+      const res = await axios.post("/api/users/signin", data );
+      console.log(res.data)
     } catch (error) {
       console.error("There was an error", error);
     }
@@ -22,7 +23,7 @@ export default function LoginView() {
 
   return <>
   <div className="front">
-  {/* <h1>Login</h1> */}
+  <h1>Login</h1>
   <form onSubmit={handleSubmit}>
     <label>
       Username

@@ -9,6 +9,7 @@ import Home from "./component/Home/Home";
 import Instruments from "./component/Instruments/Instruments";
 import Search from "./component/Search/Search";
 import artistDetailData from "./component/Search/ArtistDetailData";
+import LoginView from './component/Home/LoginView'
 
 function App() {
   return (
@@ -24,9 +25,10 @@ function App() {
           element={<Search details={artistDetailData} />}
         />
         <Route path="/details/:genrename" element={<Details />} />
+        <Route path="/signin" element={<LoginView/>}/>
         <Route path="*" element={<div> 404 page not found </div>} />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
