@@ -1,16 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Scroll from "./Scroll";
 import SearchList from "./SearchList";
-
-export default function Search({ details }) {
+import axios from "axios";
+export default function Search() {
   const [searchField, setSearchField] = useState("");
+  const [artists, setArtists] = useState([]);
 
-  const filteredArtist = details?.filter((artist) => {
+  useEffect(() => {
+    fetchArtists();
+  }, []);
+
+  const fetchArtists = async () => {
+    try {
+      console.log("get songs");
+      const response = await axios.get("http://localhost:4000/api/artist/allArtist");
+      setArtists(response.data);
+      console.log("artists", artists);
+    } catch (error) {
+      console.error("error", error);
+    }
+  };
+
+  const filteredArtist = artists?.filter((artist) => {
     return (
-      artist.first_name
+      artist.firstName
         .toLowerCase()
         .includes(searchField.toLocaleLowerCase()) ||
-      artist.last_name
+      artist.lastName
         .toLocaleLowerCase()
         .includes(searchField.toLocaleLowerCase())
       

@@ -1,11 +1,22 @@
 import { StatusCodes } from "http-status-codes";
 import Artist from "../models/Artist.js";
 
+export const listArtist = async (req, res) => {
+  try {
+    const listArtist = await Artist.find().populate("songs");
+    return res.status(StatusCodes.OK).json(listArtist);
+  } catch (error) {
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ message: error.toString() });
+  }
+};
+
 export const listArtistByName = async (req, res) => {
   try {
     const listArtist = await Artist.find({
       firstName: req.params.firstName,
-    }).populate('songs');
+    }).populate("songs");
     return res.status(StatusCodes.OK).json(listArtist);
   } catch (error) {
     return res
