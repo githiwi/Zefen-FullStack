@@ -10,7 +10,7 @@ import Instruments from "./component/Instruments/Instruments";
 import Search from "./component/Search/Search";
 import artistDetailData from "./component/Search/ArtistDetailData";
 import LoginView from './component/Home/LoginView'
-import SignupForm from "./component/SignUp/SignUp";
+import SignupForm from "./component/SignUp/SignupForm";
 
 function App() {
   return (

@@ -1,50 +1,54 @@
-import React, { useState } from 'react';
-import axios from '../../util/axiosInstance'
+import React, { useState } from "react";
+import axios from "../../util/axiosInstance";
+import "./SignupForm.css";
 
 const SignupForm = () => {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    userName: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
+    firstName: "",
+    lastName: "",
+    userName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
   });
 
-  const { firstName, lastName, userName, email, password, confirmPassword } = formData;
+  const { firstName, lastName, userName, email, password, confirmPassword } =
+    formData;
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Perform form submission logic here
     console.log(formData);
 
     try {
-        // Make a POST request to your backend endpoint
-        const response = await axios.post('api/users/signup', formData);
-        console.log(response.data); // Handle the response from the backend
-      } catch (error) {
-        console.error(error);
-      }
-  
+      // Make a POST request to your backend endpoint
+      const response = await axios.post("api/users/signup", formData);
+      console.log(response.data); // Handle the response from the backend
+    } catch (error) {
+      console.error(error);
+    }
+
     // Reset the form
     setFormData({
-      firstName: '',
-      lastName: '',
-      userName: '',
-      email: '',
-      password: '',
-      confirmPassword: '',
+      firstName: "",
+      lastName: "",
+      userName: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
     });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="signup-form" onSubmit={handleSubmit}>
       <div className="mb-3">
-        <label htmlFor="firstName" className="form-label">First Name</label>
+        <label htmlFor="firstName" className="form-label">
+          First Name
+        </label>
         <input
           type="text"
           className="form-control"
@@ -56,7 +60,9 @@ const SignupForm = () => {
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="lastName" className="form-label">Last Name</label>
+        <label htmlFor="lastName" className="form-label">
+          Last Name
+        </label>
         <input
           type="text"
           className="form-control"
@@ -68,7 +74,9 @@ const SignupForm = () => {
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="userName" className="form-label">Username</label>
+        <label htmlFor="userName" className="form-label">
+          Username
+        </label>
         <input
           type="text"
           className="form-control"
@@ -80,7 +88,9 @@ const SignupForm = () => {
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="email" className="form-label">Email</label>
+        <label htmlFor="email" className="form-label">
+          Email
+        </label>
         <input
           type="email"
           className="form-control"
@@ -92,7 +102,9 @@ const SignupForm = () => {
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="password" className="form-label">Password</label>
+        <label htmlFor="password" className="form-label">
+          Password
+        </label>
         <input
           type="password"
           className="form-control"
@@ -104,7 +116,9 @@ const SignupForm = () => {
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
+        <label htmlFor="confirmPassword" className="form-label">
+          Confirm Password
+        </label>
         <input
           type="password"
           className="form-control"
@@ -115,7 +129,9 @@ const SignupForm = () => {
           required
         />
       </div>
-      <button type="submit" className="btn btn-primary">Sign Up</button>
+      <button type="submit" className="btn btn-primary">
+        Sign Up
+      </button>
     </form>
   );
 };
