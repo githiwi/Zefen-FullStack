@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes,Router } from "react-router-dom";
 import "./App.css";
 import About from "./component/About/About";
 import Categories from "./component/Categories/Categories";
@@ -19,6 +19,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/categories" element={<Categories />} />
+  
         <Route path="/instruments" element={<Instruments />} />
         <Route path="/about" element={<About />} />
         <Route
@@ -30,7 +31,7 @@ function App() {
         <Route path="/signup" element={<SignupForm/>}/>
         <Route path="*" element={<div> 404 page not found </div>} />
       </Routes>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }
