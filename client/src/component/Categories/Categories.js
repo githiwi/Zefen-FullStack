@@ -1,22 +1,10 @@
-// import "./Categories.css";
-// import { Link } from "react-router-dom";
-// import musicalGenre from "../Data";
 
-// export default function Categories() {
-//   return (
-//     <div className="boxes">
-//       {Object.keys(musicalGenre).map((key) => (
-//         <button className={key}>
-//           <Link to={`/details/${key}`}>{musicalGenre[key].title}</Link>
-//         </button>
-//       ))}
-//     </div>
-//   );
-// }
+
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Categories.css";
 import axios from "axios";
+
 import ImageBati from '../../images/bati_2.jpg'
 import ImageAbasel from '../../images/Ambassel_scale.gif'
 import ImageAnchihoye from '../../images/Anchihoye_2.png'
@@ -43,7 +31,11 @@ useEffect(()=>{
       <div className="category-cards">
         {geners.map((gener) => (
           <div className="card" key={gener.id}>
-            <img className="card-img-top" src={ImageBati} alt="bati" />
+          
+            {gener.category === "Bati" && <img className="card-img-top" src={ImageBati} alt="" />}
+            {gener.category === "Ambasel" && <img className="card-img-top" src={ImageAbasel} alt="" />}
+            {gener.category === "Anchihoye" && <img className="card-img-top" src={ImageAnchihoye} alt="" />}
+            {gener.category === "Tizita" && <img className="card-img-top" src={ImageTizita} alt="" />}
             <div className="card-body">
               <h5 className="card-title">{gener.category}</h5>
               <p className="card-text">{gener.description}</p>
@@ -58,4 +50,4 @@ useEffect(()=>{
   );
 };
 
-export default CategoriesPage;
+export default CategoriesPage
