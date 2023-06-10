@@ -17,7 +17,10 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Categories.css";
 import axios from "axios";
-
+import ImageBati from '../../images/bati_2.jpg'
+import ImageAbasel from '../../images/Ambassel_scale.gif'
+import ImageAnchihoye from '../../images/Anchihoye_2.png'
+import ImageTizita from '../../images/tizitaminor_2.png'
 const CategoriesPage = () => {
 useEffect(()=>{
   fetchGeners()
@@ -40,7 +43,7 @@ useEffect(()=>{
       <div className="category-cards">
         {geners.map((gener) => (
           <div className="card" key={gener.id}>
-            <img className="card-img-top" src={gener.generImage} alt={gener.category} />
+            <img className="card-img-top" src={ImageBati} alt="bati" />
             <div className="card-body">
               <h5 className="card-title">{gener.category}</h5>
               <p className="card-text">{gener.description}</p>

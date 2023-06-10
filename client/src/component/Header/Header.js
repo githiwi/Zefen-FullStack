@@ -11,9 +11,10 @@ export default function Header() {
 
   const handleSignOut = async () => {
     try {
+      console.log("signout req")
       // make a request to your server to end the user's session
       await axios.post('/api/users/signout');
-
+      console.log("signout done")
       // clear the user's data from the context
       setUser(null);
     } catch (error) {
