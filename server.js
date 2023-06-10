@@ -41,5 +41,6 @@ app.use("/api/song", songRoute);
 app.use("/api/artist", ArtistRoute);
 app.use("/api/zefens", zefenRoutes);
 app.use("/api/users", userRoute);
+app.use("/upload", express.static("./upload"));
 
 app.listen(4000, () => console.log("Server is listening for requests."));

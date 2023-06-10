@@ -6,9 +6,9 @@ export default function Card({ artist }) {
       <img
         className="br-100 h3 w3 dib "
         alt={artist.firstName}
-        src={process.env.PUBLIC_URL + artist.artistImage}
+        src={process.env.REACT_APP_BACKEND_URL + artist.artistImage}
       />
-      <div style={{color:'purple'}}>
+      <div style={{ color: "purple" }}>
         <h2>{artist.firstName}</h2>
         <h2>{artist.lastName}</h2>
         {/* <audio controls>

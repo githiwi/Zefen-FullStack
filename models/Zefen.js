@@ -9,6 +9,7 @@ const generSchema = new Schema({
     },
   },
   description: String,
+  generImage:String
 });
 
 const Gener = model("gener", generSchema);

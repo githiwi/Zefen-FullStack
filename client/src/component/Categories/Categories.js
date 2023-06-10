@@ -40,7 +40,7 @@ useEffect(()=>{
       <div className="category-cards">
         {geners.map((gener) => (
           <div className="card" key={gener.id}>
-            <img className="card-img-top" src={gener.image} alt={gener.category} />
+            <img className="card-img-top" src={gener.generImage} alt={gener.category} />
             <div className="card-body">
               <h5 className="card-title">{gener.category}</h5>
               <p className="card-text">{gener.description}</p>
