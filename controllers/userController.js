@@ -71,6 +71,7 @@ export const logInUser = async (req, res) => {
 };
 
 export const logoutUser = (req, res) => {
+  console.log("out")
   res
     .clearCookie("jwt", {
       httpOnly: true,

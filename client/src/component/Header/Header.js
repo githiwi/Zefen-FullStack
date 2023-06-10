@@ -1,9 +1,26 @@
 import { NavLink ,Link} from "react-router-dom";
+import React, { useContext } from 'react';
+import UserContext from "../userContext/UserContext";
+import axios from 'axios';
 //import "./Header.css";
 
-import React from "react";
+
 
 export default function Header() {
+  const { user, setUser } = useContext(UserContext);
+
+  const handleSignOut = async () => {
+    try {
+      // make a request to your server to end the user's session
+      await axios.post('/api/users/signout');
+
+      // clear the user's data from the context
+      setUser(null);
+    } catch (error) {
+      console.error('There was an error signing out', error);
+    }
+  };
+
   return (
     <div className="d-flex flex-column flex-md-row align-items-center justify-content-between p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
     <h3 className="my-0 mr-md-auto font-weight-normal">ዘፈን Zefen</h3>
@@ -13,21 +30,19 @@ export default function Header() {
       <Link className="p-2 text-dark" to="/searchArtist">Search</Link>
       <Link className="p-2 text-dark" to="/instruments">Instruments</Link>
       <Link className="p-2 text-dark" to="/about">About</Link>
-      <Link className="btn btn-outline-info me-md-2" to="/signin">Login</Link>
-      <Link className="btn btn-outline-info me-md-2" to="/signup">Signup</Link>
-    </nav>
+      {user ? (
+          <div>
+            <img src={user.avatar} alt="User avatar" className="user-avatar" />
+            <Link className="btn btn-outline-info me-md-2" to="/" onClick={handleSignOut}>Sign Out</Link>
+          </div>
+        ) : (
+          <>
+            <Link className="btn btn-outline-info me-md-2" to="/signin">Login</Link>
+            <Link className="btn btn-outline-info me-md-2" to="/signup">Signup</Link>
+          </>
+        )}
+      </nav>
   </div>
-    // <div className="navs">
-    //   <div className="rightOnNav">
-    //     <h1>ZEFEN ዘፈን</h1>
-    //   </div>
-    //   <div className="links">
-    //     <NavLink to="/">Home</NavLink>
-    //     <NavLink to="/categories">Music Genres</NavLink>
-    //     <NavLink to="/searchArtist">Search</NavLink>
-    //     <NavLink to="/instruments">Instruments</NavLink>
-    //     <NavLink to="/about">About</NavLink>
-    //   </div>
-    // </div>
+   
   );
 }
