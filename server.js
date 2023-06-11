@@ -5,6 +5,7 @@ import zefenRoutes from "./routes/zefenRoutes.js";
 import userRoute from "./routes/userRoutes.js";
 import songRoute from "./routes/songRoutes.js";
 import ArtistRoute from "./routes/artistRoutes.js";
+import uploadSongRoute from './routes/fileRoutes.js'
 import cors from "cors";
 
 //loads .env file contents into process.env (environment variables)
@@ -41,6 +42,10 @@ app.use("/api/song", songRoute);
 app.use("/api/artist", ArtistRoute);
 app.use("/api/zefens", zefenRoutes);
 app.use("/api/users", userRoute);
-app.use("/upload", express.static("./upload"));
+
+app.use('/api/files',uploadSongRoute)
+
+app.use("/upload", express.static("./upload"));//The app.use() function is used in Express.js to define middleware. In this specific case, app.use("/upload", express.static("./upload")) is used to serve static files from the /upload URL path.
+
 
 app.listen(4000, () => console.log("Server is listening for requests."));

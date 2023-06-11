@@ -30,6 +30,7 @@ export default function Header() {
       <Link className="p-2 text-dark" to="/categories">Music Genres</Link>
       <Link className="p-2 text-dark" to="/searchArtist">Search</Link>
       <Link className="p-2 text-dark" to="/instruments">Instruments</Link>
+      <Link className="p-2 text-dark" to="/uploadSong">Upload Muisc</Link>
       <Link className="p-2 text-dark" to="/about">About</Link>
       {user ? (
           <div>
