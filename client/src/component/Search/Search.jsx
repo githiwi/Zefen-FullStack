@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Scroll from "./Scroll";
 import SearchList from "./SearchList";
-import axios from "axios";
+import axios from "../../util/axiosInstance";
 export default function Search() {
   const [searchField, setSearchField] = useState("");
   const [artists, setArtists] = useState([]);
@@ -13,7 +13,7 @@ export default function Search() {
   const fetchArtists = async () => {
     try {
       console.log("get songs");
-      const response = await axios.get("http://localhost:4000/api/artist/allArtist");
+      const response = await axios.get("/api/artist/allArtist");
       setArtists(response.data);
       console.log("artists", artists);
     } catch (error) {

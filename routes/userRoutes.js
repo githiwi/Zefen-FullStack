@@ -1,26 +1,27 @@
 import express from "express";
+import passport from "passport";
 import {
   createUser,
   logInUser,
-  logoutUser,
+  logoutUser, addFavoriteSong, addFavoriteArtist 
 } from "../controllers/userController.js";
 
-const route = express.Router();
-
-//sample for testing
-// {
- //   "firstName": "liya",
-//    "lastName": "Test888",
- //   "userName": "liya123",
- //  "email": "liya.test@testing.com",
- //"password":"testing888"
-//}
+const router = express.Router();
 
 //post http://localhost:4000/api/users/signup
-route.post("/signup", createUser);
+router.post("/signup", createUser);
 
 //post http://localhost:4000/api/users/signin
-route.post("/signin", logInUser);
-route.get("/signout", logoutUser);
+router.post("/signin", logInUser);
 
-export default route;
+//get http://localhost:4000/api/users/signout
+router.get("/signout", logoutUser);
+
+
+router.post('/:userId/favorites/songs/:songId', passport.authenticate('jwt', { session: false }), addFavoriteSong);
+router.post('/:userId/favorites/artists/:artistId', passport.authenticate('jwt', { session: false }), addFavoriteArtist);
+
+// Add routes for removeFavoriteSong, addFavoriteArtist, removeFavoriteArtist
+
+
+export default router;

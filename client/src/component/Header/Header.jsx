@@ -1,4 +1,4 @@
-import { NavLink ,Link} from "react-router-dom";
+import {  Link} from "react-router-dom";
 import React, { useContext } from 'react';
 import UserContext from "../userContext/UserContext";
 import axios from 'axios';
@@ -11,7 +11,7 @@ export default function Header() {
 
   const handleSignOut = async () => {
     try {
-      console.log("signout req")
+  
       // make a request to your server to end the user's session
       await axios.post('/api/users/signout');
       console.log("signout done")

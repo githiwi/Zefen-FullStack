@@ -28,7 +28,9 @@ export const createUser = async (req, res) => {
 
 export const logInUser = async (req, res) => {
   try {
-    const user = await User.findOne({ userName: req.body.userName });
+    const user = await User.findOne({ userName: req.body.userName })
+      .populate("favoriteSongs")
+      .populate("favoriteArtists");
 
     //does this user name exist?
     if (!user) {
@@ -56,12 +58,15 @@ export const logInUser = async (req, res) => {
         //ESSENTIAL cookie --> keep track of who is signed in. (storing token)
         httpOnly: true, //no scripting languages can access this cookie
         secure: false, //cookie can only be sent over https SSL/TLS, --> encrypted connection with server
-        sameSite: "lax", //not allowing cookie over cross-site request (when loading images)
+        sameSite: "Lax", //not allowing cookie over cross-site request (when loading images)
       })
       .json({
         message: "login successfull",
         // we are sending the user as an object with only selected keys
-        user: { username: user.userName },
+        user: {  userId: user._id,
+          username: user.userName,
+          favoriteSongs: user.favoriteSongs,
+          favoriteArtists: user.favoriteArtists  },
       });
   } catch (error) {
     return res
@@ -71,12 +76,42 @@ export const logInUser = async (req, res) => {
 };
 
 export const logoutUser = (req, res) => {
-  console.log("out")
+  console.log("out");
   res
     .clearCookie("jwt", {
       httpOnly: true,
-      sameSite: "lax",
+      sameSite: "Lax",
       secure: false,
     })
     .send("User is logged out");
 };
+
+
+
+export const addFavoriteSong = async (req, res) => {
+  try {
+    const user = await User.findByIdAndUpdate(
+      req.params.userId,
+      { $addToSet: { favoriteSongs: req.params.songId } },
+      { new: true }
+    ).populate('favoriteSongs').populate('favoriteArtists');
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export const addFavoriteArtist = async (req, res) => {
+  try {
+    const user = await User.findByIdAndUpdate(
+      req.params.userId,
+      { $addToSet: { favoriteArtists: req.params.artistId } },
+      { new: true }
+    ).populate('favoriteSongs').populate('favoriteArtists');
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export default {createUser, logInUser, logoutUser}

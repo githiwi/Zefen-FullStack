@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Route, Routes, Router } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Route, Routes} from "react-router-dom";
 import "./App.css";
 import About from "./component/About/About";
 
@@ -11,14 +11,32 @@ import Home from "./component/Home/Home";
 
 import Instruments from "./component/Instruments/Instruments";
 import Search from "./component/Search/Search";
-import artistDetailData from "./component/Search/ArtistDetailData";
+//import artistDetailData from "./component/Search/ArtistDetailData";
 import LoginView from "./component/Home/LoginView";
 import SignupForm from "./component/SignUp/SignupForm";
 import UserContext from "./component/userContext/UserContext";
 import UploadSong from "./component/UplaodSong/UploadSong";
+import Profile from "./component/Profile/Profile";
 
 function App() {
   const [user, setUser] = useState(null); // add a piece of state for the user's data
+  // When the app is first loaded, check if there's user data in local storage
+  useEffect(() => {
+    const userData = localStorage.getItem("user");
+    if (userData) {
+      setUser(JSON.parse(userData));
+    }
+  }, []);
+
+  // When the user data changes, store it in local storage
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem("user", JSON.stringify(user));
+    } else {
+      localStorage.removeItem("user");
+    }
+  }, [user]);
+
   return (
     <UserContext.Provider value={{ user, setUser }}>
       <div className="App">
@@ -33,12 +51,14 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route
             path="/searchArtist"
-            element={<Search details={artistDetailData} />}
+            element={<Search  />}
           />
 
           <Route path="/details/:genrename" element={<Details />} />
           <Route path="/signin" element={<LoginView />} />
           <Route path="/signup" element={<SignupForm />} />
+
+          <Route path="/profile" element={<Profile/>} /> 
           <Route path="*" element={<div> 404 page not found </div>} />
         </Routes>
         <Footer />

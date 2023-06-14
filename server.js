@@ -7,6 +7,10 @@ import songRoute from "./routes/songRoutes.js";
 import ArtistRoute from "./routes/artistRoutes.js";
 import uploadSongRoute from './routes/fileRoutes.js'
 import cors from "cors";
+import passport from "passport";
+import cookieParser from "cookie-parser";
+import { configureJwtStrategy } from './passport-config.js'
+
 
 //loads .env file contents into process.env (environment variables)
 dotenv.config();
@@ -20,12 +24,15 @@ app.use(
 );
 
 //middleware to parse cookies and add those cookies to req.cookies
-// app.use(cookieParser());
+app.use(cookieParser());
 
-// configureJwtStrategy(passport);
+configureJwtStrategy(passport);
+
+
 
 //allows us to parse json information from http body to req.body
 app.use(express.json());
+app.use(express.urlencoded({ extended: true })); //parses urlencoded data 
 
 mongoose
   .connect(

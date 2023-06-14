@@ -1,10 +1,16 @@
 import express from "express";
+import passport from "passport";
+import  {creteSong, getSongByGener, getSongByName, listSongs } from "../controllers/songController.js";
 
-import  {creteSong, getSongByGener, getSongByName, listSongs } from "../controllers/SongController.js";
-const route = express.Router();
-route.get('/list',listSongs)
-route.get('/byTitle/:title',getSongByName)
-route.get('/byGener/:gener',getSongByGener)
-route.post("/newsong", creteSong);
+const router = express.Router();
 
-export default route;
+router.get('/list', passport.authenticate("jwt", { session: false }), listSongs)
+
+router.get('/byTitle/:title', passport.authenticate("jwt", { session: false }), getSongByName)
+
+router.get('/byGener/:gener', passport.authenticate("jwt", { session: false }), getSongByGener)
+
+router.post("/newsong", passport.authenticate("jwt", { session: false }), creteSong);
+
+
+export default router;
