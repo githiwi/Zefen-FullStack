@@ -10,7 +10,7 @@ export default function LoginView() {
   const { setUser } = useContext(UserContext); // get the setUser function from context
 
   const navigate = useNavigate(); // create a navigate function
-  const [errorMessage, setErrorMessage] = useState(""); // add a piece of state for the error message
+  const [errorMessage, setErrorMessage] = useState(""); // add state for the error message
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -51,7 +51,6 @@ export default function LoginView() {
     <button>Login</button>
   </form>
   {errorMessage && <p className="error-message">{errorMessage}</p>}{" "}
-        {/* display the error message if it exists */}
   </div>
 
   </>;

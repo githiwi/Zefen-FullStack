@@ -85,6 +85,10 @@ const Details = () => {
         {category?.map((song) => (
           <li key={song._id}>
             {song.title}-{song.artist}
+            <audio controls className="mt-2">
+    //               <source src={song.musicUrl} type="audio/mp3" />
+    //               Your browser does not support the audio element.
+    //             </audio>
             <button onClick={() => handleAddSongToFavorites(song._id)}>
               Add to Favorites
             </button>
