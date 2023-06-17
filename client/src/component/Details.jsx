@@ -1,6 +1,152 @@
+// import React, { useState, useEffect, useContext } from "react";
+// import { useParams } from "react-router-dom";
+// import UserContext from "../component/userContext/UserContext";
+// import axios from "../util/axiosInstance";
+// import "./Details.css";
+
+// const Details = () => {
+//   const { user } = useContext(UserContext);
+
+//   const userId = user["user"].userId;
+
+//   const [category, setCategory] = useState(null);
+
+//   const [clickedSongs, setClickedSongs] = useState([]);
+
+//   let { genrename } = useParams();
+
+//   useEffect(() => {
+//     console.log("musicalGenre", genrename);
+//     fetchCategory(genrename);
+//   }, [genrename]);
+
+//   const [artist, setArtist] = useState([]);
+
+//   const fetchCategory = async (categoryId) => {
+//     try {
+//       const response = await axios.get(`/api/song/byGener/${categoryId}`);
+//       setCategory(response.data);
+//       const resArrayArtist = response.data
+//         .map((element) => element.artists)
+//         .filter((element) => element !== null)
+//         .filter(
+//           (value, index, self) =>
+//             index === self.findIndex((t) => t._id === value._id)
+//         );
+//       setArtist(resArrayArtist);
+//     } catch (error) {
+//       console.error(error);
+//     }
+//   };
+
+  
 
 
-import React, { useState, useEffect,useContext } from "react";
+//   const handleAddSongToFavorites = async (songId) => {
+//     try {
+//       const response = await axios.post(
+//         `/api/users/${userId}/favorites/songs/${songId}`
+//       );
+//       console.log("Added Song to Favorites", response);
+//       setClickedSongs((prevState) => [...prevState, songId]); // Add the clicked song ID to the state
+//     } catch (error) {
+//       console.error("Failed to add song to favorites", error);
+//     }
+//   };
+
+//   const handleAddArtistToFavorites = async (artistId) => {
+//     try {
+//       const response = await axios.post(
+//         `/api/users/${userId}/favorites/artists/${artistId}`
+//       );
+//       // updateUser state after adding artist to favorites
+//     } catch (error) {
+//       console.error("Failed to add artist to favorites", error);
+//     }
+//   };
+
+//   if (!category) {
+//     return <div>Loading...</div>;
+//   }
+
+//   return (
+//     <div>
+//     <h2>Artists:</h2>
+//     <ul>
+//       {artist?.map((artist) => (
+//         <li key={artist._id}>
+//           --{artist.firstName}--{artist.artistImage}
+//           <button onClick={() => handleAddArtistToFavorites(artist._id)}>
+//             Add to Favorites
+//             <i className="fas fa-heart"></i>
+//           </button>
+//         </li>
+//       ))}
+//     </ul>
+//     <h2>Songs:</h2>
+//     <ul>
+//       {category?.map((song) => (
+//         <li key={song._id}>
+//           {song.title}-{song.artist}
+//           <audio controls className="mt-2">
+//             <source src={song.musicUrl} type="audio/mp3" />
+//             Your browser does not support the audio element.
+//           </audio>
+//           <button
+//             className={`favorite-button ${clickedSongs.includes(song._id) ? "clicked" : ""}`}
+//             onClick={() => handleAddSongToFavorites(song._id)}
+//           >
+//             Add to Favorites
+//             <i className="fas fa-heart"></i>
+//           </button>
+//         </li>
+//       ))}
+//     </ul>
+//   </div>
+//   //-----------------------------------------------
+//     // <div>
+//     //   <h2>Artists:</h2>
+//     //   <ul>
+//     //     {artist?.map((artist) => (
+//     //       <li key={artist._id}>
+//     //         --{artist.firstName}--{artist.artistImage}
+//     //         <button
+//     //           className={`favorite-button ${
+//     //             clickedSongs.includes(song._id) ? "clicked" : ""
+//     //           }`}
+//     //           onClick={() => handleAddSongToFavorites(song._id)}
+//     //         >
+//     //           Add to Favorites
+//     //         </button>
+//     //         {/* <button onClick={() => handleAddArtistToFavorites(artist._id)}>
+//     //           Add to Favorites
+//     //         </button> */}
+//     //       </li>
+//     //     ))}
+//     //   </ul>
+//     //   <h2>Songs:</h2>
+//     //   <ul>
+//     //     {category?.map((song) => (
+//     //       <li key={song._id}>
+//     //         {song.title}-{song.artist}
+//     //         <audio controls className="mt-2">
+//     //           <source src={song.musicUrl} type="audio/mp3" />
+//     //           Your browser does not support the audio element.
+//     //         </audio>
+//     //         <button onClick={() => handleAddSongToFavorites(song._id)}>
+//     //           Add to Favorites
+//     //         </button>
+//     //       </li>
+//     //     ))}
+//     //   </ul>
+//     // </div>
+//   );
+// };
+
+// export default Details;
+
+//--------------------------------------------------------------------------------------------
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import UserContext from "../component/userContext/UserContext";
 import axios from "../util/axiosInstance";
@@ -9,9 +155,11 @@ import "./Details.css";
 const Details = () => {
   const { user } = useContext(UserContext);
 
-  const userId = user["user"].userId;
+  // const userId = user["user"].userId;
+  const userId = user && user["user"] ? user["user"].userId : null;
 
   const [category, setCategory] = useState(null);
+  const [clickedSongs, setClickedSongs] = useState([]);
 
   let { genrename } = useParams();
 
@@ -31,8 +179,7 @@ const Details = () => {
         .filter((element) => element !== null)
         .filter(
           (value, index, self) =>
-            index ===
-            self.findIndex((t) => t._id === value._id)
+            index === self.findIndex((t) => t._id === value._id)
         );
       setArtist(resArrayArtist);
     } catch (error) {
@@ -42,15 +189,24 @@ const Details = () => {
 
   const handleAddSongToFavorites = async (songId) => {
     try {
-      //const res = await axios.post("/api/users/signin", data);
-      const response = await axios.post(`/api/users/${userId}/favorites/songs/${songId}`
+      if (clickedSongs.includes(songId)) {
+        // If the song is already in favorites, remove it from the clickedSongs state
+        setClickedSongs((prevState) => prevState.filter((id) => id !== songId));
+      } else {
+        // If the song is not in favorites, add it to the clickedSongs state
+        setClickedSongs((prevState) => [...prevState, songId]);
+      }
+  
+      // Send the request to add/remove the song from favorites
+      const response = await axios.post(
+        `/api/users/${userId}/favorites/songs/${songId}`
       );
-      console.log("added Song to Favorites", response);
-      // updateUser state after adding song to favorites
+      console.log("Added/Removed Song to Favorites", response);
     } catch (error) {
-      console.error("Failed to add song to favorites", error);
+      console.error("Failed to add/remove song to favorites", error);
     }
   };
+  
 
   const handleAddArtistToFavorites = async (artistId) => {
     try {
@@ -68,68 +224,59 @@ const Details = () => {
   }
 
   return (
-<div>
+    <div className="container">
       <h2>Artists:</h2>
-      <ul>
+      <div className="row">
         {artist?.map((artist) => (
-          <li key={artist._id}>
-            --{artist.firstName}--{artist.artistImage}
-            <button onClick={() => handleAddArtistToFavorites(artist._id)}>
-              Add to Favorites
-            </button>
-          </li>
+          <div className="col-md-4" key={artist._id}>
+            <div className="card">
+              <img
+                src={artist.artistImage}
+                alt={artist.firstName}
+                className="card-img-top"
+              />
+              <div className="card-body">
+                <h5 className="card-title">{artist.firstName}</h5>
+                <button 
+                  className={`favorite-button ${
+                    clickedSongs.includes(artist._id) ? "clicked" : ""
+                  }`}
+                  onClick={() => handleAddArtistToFavorites(artist._id)}
+                >
+                  Add to Favorites
+                </button>
+              </div>
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
+
       <h2>Songs:</h2>
-      <ul>
+      <div className="row">
         {category?.map((song) => (
-          <li key={song._id}>
-            {song.title}-{song.artist}
-              <audio controls className="mt-2">
-                <source src={song.musicUrl} type="audio/mp3" />
-                 Your browser does not support the audio element.
-               </audio>
-            <button onClick={() => handleAddSongToFavorites(song._id)}>
-              Add to Favorites
-            </button>
-          </li>
+          <div className="col-md-4" key={song._id}>
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title">{song.title}</h5>
+                <p className="card-text">{song.artist}</p>
+                <audio controls className="mt-2">
+                  <source src={song.musicUrl} type="audio/mp3" />
+                  Your browser does not support the audio element.
+                </audio>
+                <button
+                  className={`favorite-button ${
+                    clickedSongs.includes(song._id) ? "clicked" : ""
+                  }`}
+                  onClick={() => handleAddSongToFavorites(song._id)}
+                >
+                  Add to Favorites
+                </button>
+              </div>
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
-
-    // <div className="container">
-    //   <h2 className="mt-4 mb-3">{category.name}</h2>
-    //   <p className="mb-4">{category.description}</p>
-
-    //   <div className="row">
-    //     <div className="col-lg-6">
-    //       <h3 className="mb-3">Artists:</h3>
-    //       <ul className="list-group">
-    //         {artst.map((artist) => (
-    //           <li key={artist._id} className="list-group-item">
-    //             {artist.firstName}
-    //           </li>
-    //         ))}
-    //       </ul>
-    //     </div>
-
-    //     <div className="col-lg-6">
-    //       <h3 className="mb-3">Songs:</h3>
-    //       <ul className="list-group">
-    //         {category.map((song) => (
-    //           <li key={song._id} className="list-group-item">
-    //             <h5 className="mb-1">{song.title}</h5>
-    //             <p className="mb-0">{song.artists}</p>
-    //             <audio controls className="mt-2">
-    //               <source src={song.musicUrl} type="audio/mp3" />
-    //               Your browser does not support the audio element.
-    //             </audio>
-    //           </li>
-    //         ))}
-    //       </ul>
-    //     </div>
-    //   </div>
-    // </div>
   );
 };
 

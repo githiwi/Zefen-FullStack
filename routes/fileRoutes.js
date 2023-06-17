@@ -1,6 +1,6 @@
 import express from "express";
 import multer from "multer";
-import { uploadSong,getFileById } from "../controllers/songUplaod.js";
+import { getFileById,uploadSong } from "../controllers/songUplaod.js";
 
 
 const router = express.Router();
@@ -22,5 +22,7 @@ const storage = multer.diskStorage({
 const upload = multer({storage:storage})
 
 router.get('/byid/:fileId',getFileById);
-router.post("/create", upload.single('image'), uploadSong);
+//router.post("/create", upload.single('audio'), UploadForm);
+router.post("/upload", upload.single('file'), uploadSong);
+
 export default router;

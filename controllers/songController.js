@@ -50,7 +50,7 @@ export const getSongByArtist = async (req, res) => {
       .json({ message: error.toString() });
   }
 };
-export const creteSong = async (req, res) => {
+export const createSong = async (req, res) => {
   try {
     // console.log("why",req)
     const createdSong = await Song.create({
@@ -70,4 +70,4 @@ export const creteSong = async (req, res) => {
   }
 };
 
-export default { creteSong, listSongs };
+export default { createSong, listSongs, getSongByName };

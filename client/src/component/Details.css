@@ -1,44 +1,75 @@
-.details-container {
-  margin: 20px;
+@import url("https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css");
+
+
+.Details {
+  text-align: center;
+  margin-top: 20px;
 }
 
-.category-name {
+.Details h2 {
   font-size: 24px;
-  font-weight: bold;
-}
-
-.category-description {
-  margin-bottom: 20px;
-}
-
-.section-title {
-  font-size: 20px;
-  font-weight: bold;
   margin-bottom: 10px;
 }
 
-.artist-list {
+.Details ul {
   list-style: none;
-  padding-left: 0;
+  padding: 0;
+  margin: 0;
 }
 
-.artist-item {
-  margin-bottom: 5px;
+.Details li {
+  margin-bottom: 10px;
 }
 
-.song-list {
-  list-style: none;
-  padding-left: 0;
+.Details audio {
+  display: block;
+  margin-top: 10px;
 }
 
-.song-item {
-  margin-bottom: 5px;
+.Details .favorite-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
 }
 
-.song-title {
-  font-weight: bold;
+.Details .favorite-button i {
+  margin-left: 5px;
+  color: #d1d1d1;
 }
 
-.song-artist {
-  color: gray;
+.Details .favorite-button.active {
+  color: red;
 }
+
+/* details.css */
+
+.container {
+  padding: 20px;
+}
+
+h2 {
+  margin-top: 30px;
+}
+
+.card {
+  margin-bottom: 20px;
+}
+
+.card-img-top {
+  width: 100%;
+  height: auto;
+}
+
+.favorite-button {
+  margin-top: 10px;
+}
+
+.favorite-button.clicked {
+  color: red;
+}
+
+/* Additional CSS styles can be added here */

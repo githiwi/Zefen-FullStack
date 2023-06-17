@@ -78,15 +78,73 @@ h2 {
 */
 
 .card {
+  flex: 0 0 25%;
+  max-width: 300px;
+  margin: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  position: relative; /* Add position relative */
+  overflow: hidden; /* Hide overflowing content */
+  transition: transform 0.3s ease; /* Add transition for smooth animation */
+}
+
+.card:hover {
+  transform: translateY(-10px); /* Apply a vertical translation on hover */
 }
 
 .card-image {
   width: 100%;
-  height: 350px;
+  height: 200px;
   object-fit: cover;
   margin-bottom: 10px;
+  transition: transform 0.3s ease; /* Add transition for smooth animation */
+}
+.card:hover .card-image {
+  transform: scale(1.1); /* Apply scale transformation on hover */
+}
+
+.genres-section {
+  padding: 40px 0;
+}
+
+.genres-section h2 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.card-body {
+  padding: 20px;
+}
+
+.card-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  font-size: 14px;
+  color: #555;
+}
+.carousel .carousel-item img {
+  width: 100%;
+  height: auto;
+  max-height: 300px; 
+}
+
+@media (max-width: 767px) {
+  .card {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
 }
