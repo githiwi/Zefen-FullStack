@@ -1,6 +1,6 @@
 import React from "react";
-//import { Card } from "react-bootstrap";
-//import "./Instruments.css";
+import { Card } from "react-bootstrap";
+import "./Instruments.css";
 import kebero from "../../images/kebero.jpeg";
 import mesenko from "../../images/mesenko.jpeg";
 import kirar from "../../images/kirar.jpeg";

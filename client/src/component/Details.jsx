@@ -1,32 +1,52 @@
-
 import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import UserContext from "../component/userContext/UserContext";
+import UserContext from "./userContext/UserContext";
+
 import axios from "../util/axiosInstance";
-import "./Details.css";
 
 const Details = () => {
   const { user } = useContext(UserContext);
 
-  // const userId = user["user"].userId;
   const userId = user && user["user"] ? user["user"].userId : null;
+  const [favoritedSongs, setFavoritedSongs] = useState(new Set());
 
-  const [category, setCategory] = useState(null);
-  const [clickedSongs, setClickedSongs] = useState([]);
-
-  let { genrename } = useParams();
+  let { genreId } = useParams();
 
   useEffect(() => {
-    console.log("musicalGenre", genrename);
-    fetchCategory(genrename);
-  }, [genrename]);
+    fetchSongsByGener(genreId);
+  }, [genreId]);
+
+  useEffect(() => {
+    if (userId) {
+      fetchFavoriteSongs(userId);
+    }
+  }, [userId]);
+
+  const fetchFavoriteSongs = async (userId) => {
+    try {
+      const response = await axios.get(`/api/users/${userId}/favorites/songs`);
+      
+      setFavoritedSongs(new Set(response.data.favoriteSongs.map(song => song._id)));
+      console.log("after FIRST fetch from db=>", response.data.favoriteSongs.map(song => song._id));
+    } catch (error) {
+      console.error("Failed to fetch favorite songs", error);
+    }
+  };
+
+  const [songs, setSongs] = useState(null);
+
+  useEffect(() => {
+    fetchSongsByGener(genreId);
+  }, [genreId]);
 
   const [artist, setArtist] = useState([]);
 
-  const fetchCategory = async (categoryId) => {
+  const fetchSongsByGener = async (genreId) => {
     try {
-      const response = await axios.get(`/api/song/byGener/${categoryId}`);
-      setCategory(response.data);
+      const response = await axios.get(`/api/song/byGener/${genreId}`);
+      
+      setSongs(response.data);
+      console.log("category fetchCategory", JSON.stringify(songs));
       const resArrayArtist = response.data
         .map((element) => element.artists)
         .filter((element) => element !== null)
@@ -40,31 +60,31 @@ const Details = () => {
     }
   };
 
-  const handleAddSongToFavorites = async (songId) => {
+  const handleToggleSongInFavorites = async (songId) => {
     try {
-      if (clickedSongs.includes(songId)) {
-        // If the song is already in favorites, remove it from the clickedSongs state
-        setClickedSongs((prevState) => prevState.filter((id) => id !== songId));
+      if (favoritedSongs.has(songId)) {
+        // If the song is already favorited, remove it from favorites.
+        const response = await axios.delete(`/api/users/${userId}/favorites/songs/${songId}`);
+        console.log("after DELETE to favorites=>", response.data.favoriteSongs);
+        const afterRemoveFavoriteSongs = response.data.favoriteSongs.map(song => song._id);
+        setFavoritedSongs(prevState => new Set([...prevState].filter(id => id !== songId)));
       } else {
-        // If the song is not in favorites, add it to the clickedSongs state
-        setClickedSongs((prevState) => [...prevState, songId]);
+        // If the song is not favorited, add it to favorites.
+        const response = await axios.post(`/api/users/${userId}/favorites/songs/${songId}`);
+        console.log("after ADD to favorites=>", response.data.favoriteSongs);
+        const afterAddFavoriteSongs = response.data.favoriteSongs.map(song => song._id);
+        setFavoritedSongs(prevState => new Set([...prevState, songId]));
       }
-  
-      // Send the request to add/remove the song from favorites
-      const response = await axios.post(
-        `/api/users/${userId}/favorites/songs/${songId}`
-      );
-      console.log("Added/Removed Song to Favorites", response);
     } catch (error) {
-      console.error("Failed to add/remove song to favorites", error);
+      console.error("Failed to toggle song in favorites", error);
     }
-  };
+  };  
   
 
   const handleAddArtistToFavorites = async (artistId) => {
     try {
       const response = await axios.post(
-        `/api/users/${userId}/favorites/artists/${artistId}`
+        `/users/${userId}/favorites/artists/${artistId}`
       );
       // updateUser state after adding artist to favorites
     } catch (error) {
@@ -72,63 +92,39 @@ const Details = () => {
     }
   };
 
-  if (!category) {
+  if (!songs) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div className="container">
-      <h2>Artists:</h2>
-      <div className="row">
-        {artist?.map((artist) => (
-          <div className="col-md-4" key={artist._id}>
-            <div className="card">
-              <img
-                src={artist.artistImage}
-                alt={artist.firstName}
-                className="card-img-top"
-              />
-              <div className="card-body">
-                <h5 className="card-title">{artist.firstName}</h5>
-                <button 
-                  className={`favorite-button ${
-                    clickedSongs.includes(artist._id) ? "clicked" : ""
-                  }`}
-                  onClick={() => handleAddArtistToFavorites(artist._id)}
-                >
-                  Add to Favorites
-                </button>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
 
-      <h2>Songs:</h2>
-      <div className="row">
-        {category?.map((song) => (
-          <div className="col-md-4" key={song._id}>
-            <div className="card">
-              <div className="card-body">
-                <h5 className="card-title">{song.title}</h5>
-                <p className="card-text">{song.artist}</p>
-                <audio controls className="mt-2">
-                  <source src={process.env.REACT_APP_BACKEND_URL + song.musicUrl} type="audio/mp3" />
-                  Your browser does not support the audio element.
-                </audio>
-                <button
-                  className={`favorite-button ${
-                    clickedSongs.includes(song._id) ? "clicked" : ""
-                  }`}
-                  onClick={() => handleAddSongToFavorites(song._id)}
-                >
-                  Add to Favorites
-                </button>
-              </div>
+    <div className="container">
+
+    <h2>Songs:</h2>
+    <div className="row">
+      {songs?.map((song) => ( 
+        <div className="col-md-4" key={song._id}>
+          <div className="card">
+            <div className="card-body">
+              <h5 className="card-title">{song.title}</h5>
+              <p className="card-text">{song.artist}</p>
+              <audio controls className="mt-2">
+              <source src={process.env.REACT_APP_BACKEND_URL + song.musicUrl} type="audio/mp3" />
+                Your browser does not support the audio element.
+              </audio>
+
+              <button 
+                className="btn btn-outline-primary" 
+                onClick={() => handleToggleSongInFavorites(song._id)}
+              >
+                <i className={`${favoritedSongs.has(song._id) ? 'fas' : 'far'} fa-heart`}></i>
+              </button>
+
             </div>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
+    </div>
     </div>
   );
 };

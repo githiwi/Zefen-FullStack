@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
+
 import "./App.css";
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 import About from "./component/About/About";
 
 import Categories from "./component/Categories/Categories";
@@ -51,7 +54,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/searchArtist" element={<Search />} />
 
-          <Route path="/details/:genrename" element={<Details />} />
+          <Route path="/details/:genreId" element={<Details />} />
           <Route path="/signin" element={<LoginView />} />
           <Route path="/signup" element={<SignupForm />} />
 

@@ -94,12 +94,38 @@ export const addFavoriteSong = async (req, res) => {
       req.params.userId,
       { $addToSet: { favoriteSongs: req.params.songId } },
       { new: true }
-    ).populate('favoriteSongs').populate('favoriteArtists');
+    );//.populate('favoriteSongs').populate('favoriteArtists');
     res.status(200).json(user);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
+
+
+export const removeFavoriteSong = async (req, res) => {
+  try {
+    const user = await User.findByIdAndUpdate(
+      req.params.userId,
+      { $pull: { favoriteSongs: req.params.songId } },
+      { new: true }
+    );//.populate('favoriteSongs').populate('favoriteArtists');
+
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export const getFavoriteSongs = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId).populate('favoriteSongs').populate('favoriteArtists');
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+
+};
+
 
 export const addFavoriteArtist = async (req, res) => {
   try {
