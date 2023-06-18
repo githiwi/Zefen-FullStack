@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Route, Routes} from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import About from "./component/About/About";
 
@@ -15,7 +15,7 @@ import Search from "./component/Search/Search";
 import LoginView from "./component/Home/LoginView";
 import SignupForm from "./component/SignUp/SignupForm";
 import UserContext from "./component/userContext/UserContext";
-import UploadSong from "./component/UplaodSong/UploadSong";
+import AddSong from "./component/Song/AddSong";
 import Profile from "./component/Profile/Profile";
 
 function App() {
@@ -47,18 +47,15 @@ function App() {
           <Route path="/categories" element={<Categories />} />
 
           <Route path="/instruments" element={<Instruments />} />
-          <Route path="/uploadSong" element={<UploadSong />} />
+          <Route path="/addSong" element={<AddSong />} />
           <Route path="/about" element={<About />} />
-          <Route
-            path="/searchArtist"
-            element={<Search  />}
-          />
+          <Route path="/searchArtist" element={<Search />} />
 
           <Route path="/details/:genrename" element={<Details />} />
           <Route path="/signin" element={<LoginView />} />
           <Route path="/signup" element={<SignupForm />} />
 
-          <Route path="/profile" element={<Profile/>} /> 
+          <Route path="/profile" element={<Profile />} />
           <Route path="*" element={<div> 404 page not found </div>} />
         </Routes>
         <Footer />

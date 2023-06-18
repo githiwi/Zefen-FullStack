@@ -51,13 +51,16 @@ export const getSongByArtist = async (req, res) => {
   }
 };
 export const createSong = async (req, res) => {
+  console.log("audioFile", req.file)
+  console.log("req.body", JSON.stringify(req.body));
   try {
     // console.log("why",req)
     const createdSong = await Song.create({
+
       title: req.body.title,
-      artists: req.body.artists,
-      musicUrl: req.body.musicUrl,
-      gener: req.body.gener,
+      //artists: req.body.artists,
+      musicUrl: req.file.path,
+      //gener: req.body.gener,
     });
 
     return res
