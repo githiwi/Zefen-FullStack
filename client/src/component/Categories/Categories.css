@@ -1,73 +1,8 @@
 
 @import url("https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css");
 
-/* .bati,
-.ambasel,
-.tizita,
-.anchihoye {
-  width: 200px;
-  height: 200px;
-  border: 1rem;
-  margin: 2rem;
-  border-radius: 5%;
-  box-shadow: 5px 5px 15px 5px #574480;
-}
-
-.boxes {
-  height: 100vh;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  text-align: center;
-  font-size: 2rem;
-  color: #323e42;
-}
-.bati {
-  background-image: url("../../images/bati_2.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-.ambasel {
-  background-image: url("../../images/Ambassel_scale.gif");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-.tizita {
-  background-image: url("../../images/tizitaminor_2.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-
-.anchihoye {
-  background-image: url("../../images/Anchihoye_2.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-button {
-  font-size: large;
-  font-weight: 600;
-  color: blueviolet;
-}
-
-@media screen and (max-width: 700px) {
-  .boxes {
-    flex-direction: column;
-    align-items: center;
-  }
-} */
-
-
-/* .categories-page {
+.categories-page {
   padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  justify-content: center; 
 }
 
 .page-title {
@@ -78,24 +13,30 @@ button {
 
 .category-cards {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
-  justify-content: center; 
-  align-items: center;
 }
 
 .card {
-  border: 1px solid #ccc;
+  border: none;
   border-radius: 4px;
   overflow: hidden;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 .card-img-top {
-  width: 100%;
-  height: auto;
-  max-height: 200px; 
+  width: 1000%;
+  /* height: 200px; */
   object-fit: cover;
 }
+
+/* @media (min-width: 768px) {
+  .card-img-top {
+    height: 300px; 
+    object-fit: contain;
+  }
+} */
+
 
 .card-body {
   padding: 20px;
@@ -119,4 +60,4 @@ button {
   color: #fff;
   text-decoration: none;
   border-radius: 4px;
-} */
+}
