@@ -142,7 +142,7 @@ export default function Header() {
           </li>
           {user ? (
             <li className="nav-item">
-              <div className="dropdown">
+              <div >
                 <button
                   className="btn btn-outline-info dropdown-toggle"
                   type="button"
@@ -162,7 +162,7 @@ export default function Header() {
                   aria-labelledby="userDropdown"
                 >
                   <button
-                    className="dropdown-item"
+                   
                     type="button"
                     onClick={handleSignOut}
                   >

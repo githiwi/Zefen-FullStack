@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Scroll from "./Scroll";
 import SearchList from "./SearchList";
 import axios from "../../util/axiosInstance";
+import './search.css'
 export default function Search() {
   const [searchField, setSearchField] = useState("");
   const [artists, setArtists] = useState([]);

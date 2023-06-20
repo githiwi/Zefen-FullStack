@@ -34,7 +34,7 @@ const AddSong = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='form-container'>
       <label>
         Title:
         <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
