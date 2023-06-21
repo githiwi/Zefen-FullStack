@@ -66,18 +66,7 @@ h2 {
   color: #777;
   text-decoration: none;
 }
-/* .recommendation-image {
-  max-width: 100%;
-  height: auto;
-}
 
-.card img{
-  width: 100%;
-  max-width: 400px; 
-  margin: 0 auto;
-  text-align: center;
-} 
-*/
 
 .card {
   flex: 0 0 25%;
@@ -87,13 +76,13 @@ h2 {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  position: relative; /* Add position relative */
-  overflow: hidden; /* Hide overflowing content */
-  transition: transform 0.3s ease; /* Add transition for smooth animation */
+  position: relative; 
+  overflow: hidden; 
+  transition: transform 0.3s ease; 
 }
 
 .card:hover {
-  transform: translateY(-10px); /* Apply a vertical translation on hover */
+  transform: translateY(-10px);
 }
 
 .card-image {
@@ -101,10 +90,10 @@ h2 {
   height: 200px;
   object-fit: cover;
   margin-bottom: 10px;
-  transition: transform 0.3s ease; /* Add transition for smooth animation */
+  transition: transform 0.3s ease; 
 }
 .card:hover .card-image {
-  transform: scale(1.1); /* Apply scale transformation on hover */
+  transform: scale(1.1); 
 }
 
 .genres-section {

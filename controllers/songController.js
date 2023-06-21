@@ -3,8 +3,7 @@ import Song from "../models/Song.js";
 
 export const listSongs = async (req, res) => {
   try {
-    //populate both srtist and gener (embed those documents into the song document by reference)
-    // console.log("the user who made the request is", req.user);
+   
     const listSongs = await Song.find().populate("artists").populate("gener");
     return res.status(StatusCodes.OK).json(listSongs);
   } catch (error) {

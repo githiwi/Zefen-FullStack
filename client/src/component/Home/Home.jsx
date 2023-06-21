@@ -31,7 +31,7 @@ const HomePage = () => {
              <Link to={`/details/647af85db1187698767f514b`}>
                 <img className="card-img-top" src={cover1b} alt="" />
               </Link>
-            {/* <img src={cover1b} className="card-image" alt="Genre 1" /> */}
+          
             <div className="card-body">
               <h5 className="card-title">Bati</h5>
              
@@ -41,7 +41,7 @@ const HomePage = () => {
           <Link to={`/details/64807784ca04b8f8b8df39e8`}>
                 <img className="card-img-top" src={cover2an} alt="" />
               </Link>
-            {/* <img src={cover2an} className="card-image" alt="Genre 1" /> */}
+          
             <div className="card-body">
               <h5 className="card-title">Anchihoye</h5>
            
@@ -61,10 +61,10 @@ const HomePage = () => {
           <Link to={`/details/647c4dd0d30942cc59c5cf04`}>
                 <img className="card-img-top" src={cover4am} alt="" />
               </Link>
-            {/* <img src={cover4am} className="card-image" alt="Genre 3" /> */}
+         
             <div className="card-body">
               <h5 className="card-title">Ambase</h5>
-              {/* <p className="card-text">Description of Genre 3.</p> */}
+           
             </div>
             
           </div>

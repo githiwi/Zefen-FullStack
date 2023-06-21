@@ -9,8 +9,7 @@ import createSong from "./songController.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// console.log("filename", __filename);
-// console.log("dirname", __dirname);
+
 
 export const getFileById = async (req, res) => {
   try {
@@ -28,26 +27,6 @@ export const getFileById = async (req, res) => {
   }
 };
 
-// export const uploadSong = async (req, res) => {
-//   console.log(req.file);
-//   try {
-//     const newFile = await File.create({
-//       filename: req.file.filename,
-//       filePath: req.file.path,
-//       size: req.file.size,
-//       fileMimetype: req.file.mimetype,
-//     });
-    
-
-//     return res
-//       .status(StatusCodes.OK)
-//       .json({ message: "file uploaded", newFile });
-//   } catch (error) {
-//     return res
-//       .status(StatusCodes.INTERNAL_SERVER_ERROR)
-//       .json({ message: "Something went wrong" });
-//   }
-// };
 
 
 

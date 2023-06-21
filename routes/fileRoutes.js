@@ -22,7 +22,7 @@ const storage = multer.diskStorage({
 const upload = multer({storage:storage})
 
 router.get('/byid/:fileId',getFileById);
-//router.post("/create", upload.single('audio'), UploadForm);
+
 router.post("/upload", upload.single('file'), uploadSong);
 
 export default router;

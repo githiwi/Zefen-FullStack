@@ -45,6 +45,6 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   getFavoriteSongs
 );
-// Add routes for removeFavoriteSong, addFavoriteArtist, removeFavoriteArtist
+
 
 export default router;
