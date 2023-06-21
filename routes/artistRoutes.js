@@ -1,17 +1,17 @@
 import express from "express";
-import passport from "passport";
+
 import {
   createArtist,
- listArtist,
- listArtistByName,
+  listArtist,
+  listArtistByName,
 } from "../controllers/artistController.js";
 
 const router = express.Router();
 
-router.get("/allArtist", passport.authenticate("jwt", { session: false }),listArtist);
+router.get("/allArtist", listArtist);
 
-router.get("/byArtist/:firstName", passport.authenticate("jwt", { session: false }), listArtistByName);
+router.get("/byArtist/:firstName", listArtistByName);
 
-router.post("/newArtist", passport.authenticate("jwt", { session: false }), createArtist);
+router.post("/newArtist", createArtist);
 
 export default router;

@@ -1,5 +1,5 @@
 import express from "express";
-import passport from "passport";
+
 import multer from "multer";
 import {
   createSong,
@@ -12,19 +12,19 @@ const router = express.Router();
 
 router.get(
   "/list",
-  passport.authenticate("jwt", { session: false }),
+
   listSongs
 );
 
 router.get(
   "/byTitle/:title",
-  passport.authenticate("jwt", { session: false }),
+
   getSongByName
 );
 
 router.get(
   "/byGener/:gener",
-  passport.authenticate("jwt", { session: false }),
+
   getSongByGener
 );
 
@@ -42,10 +42,12 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-// router.post("/newsong", passport.authenticate("jwt", { session: false }), createSong);
+/**
+ *
+ */
 router.post(
   "/addSong",
-  passport.authenticate("jwt", { session: false }),
+
   upload.single("audio"),
   createSong
 );

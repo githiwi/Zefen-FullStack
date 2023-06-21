@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import zefenRoutes from "./routes/zefenRoutes.js";
 import userRoute from "./routes/userRoutes.js";
 import songRoute from "./routes/songRoutes.js";
-import ArtistRoute from "./routes/artistRoutes.js";
+import artistRoute from "./routes/artistRoutes.js";
 import uploadSongRoute from "./routes/fileRoutes.js";
 import cors from "cors";
 import passport from "passport";
@@ -42,8 +42,8 @@ mongoose
     console.log(error.message);
     console.log("🤨");
   });
-app.use("/api/song", songRoute);
-app.use("/api/artist", ArtistRoute);
+app.use("/api/song",  passport.authenticate("jwt", { session: false }),songRoute);
+app.use("/api/artist", passport.authenticate("jwt", { session: false }), artistRoute);
 app.use("/api/zefens", zefenRoutes);
 app.use("/api/users", userRoute);
 

@@ -40,7 +40,7 @@ useEffect(()=>{
               <h5 className="card-title">{gener.category}</h5>
               <p className="card-text">{gener.description}</p>
               
-              <Link to={`/details/${gener._id}`} className="btn btn-primary">Explore</Link>
+              <Link to={`/details/${gener._id}`} className="btn btn-info">Explore</Link>
 
             </div>
           </div>
