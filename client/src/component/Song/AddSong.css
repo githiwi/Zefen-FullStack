@@ -1,24 +1,19 @@
-.add-song-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
-  
-  .add-song-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  .add-song-form {
-    display: flex;
-    flex-direction: column;
+
+
+   .add-song-form {
     max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
   }
   
   .form-group {
-    margin-bottom: 20px;
+    flex: 1;
+    margin-right: 10px;
   }
   
   label {
@@ -27,8 +22,8 @@
   
   input[type="text"],
   select {
-    padding: 8px;
     width: 100%;
+    padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
   }
@@ -36,7 +31,7 @@
   .add-song-submit {
     padding: 8px 16px;
     font-size: 14px;
-    background-color: #007bff;
+    background-color: #333333;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -51,9 +46,4 @@
     background-color: #ccc;
     cursor: not-allowed;
   }
-  
- .form-container{
-  height: 100%;
-  background-color: rgb(173, 218, 218);
- }
   
