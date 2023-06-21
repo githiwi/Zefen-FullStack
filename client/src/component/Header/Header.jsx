@@ -29,7 +29,7 @@ export default function Header() {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light-blue">
+    <nav className="navbar navbar-expand-lg navbar-light style={{ backgroundColor: '#D3E7E7' }}">
       <Link className="navbar-brand" to="/">
         ዘፈን Zefen
       </Link>

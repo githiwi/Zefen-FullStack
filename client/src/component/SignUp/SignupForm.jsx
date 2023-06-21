@@ -44,6 +44,7 @@ const SignupForm = () => {
   };
 
   return (
+    <div className="signup-page ">
     <form className="signup-form" onSubmit={handleSubmit}>
       <div className="mb-3">
         <label htmlFor="firstName" className="form-label">
@@ -133,6 +134,7 @@ const SignupForm = () => {
         Sign Up
       </button>
     </form>
+    </div>
   );
 };
 

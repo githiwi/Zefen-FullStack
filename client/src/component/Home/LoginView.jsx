@@ -36,22 +36,43 @@ export default function LoginView() {
     }
   };
 
-  return <>
-  <div className="login-form">
-  <h1>Login</h1>
-  <form onSubmit={handleSubmit}>
-    <label>
-      Username
-      <input name="userName" type="text" required={true} />
-    </label>
-    <label>
-      Password
-      <input name="password" type="password" required={true} />
-    </label>
-    <button>Login</button>
-  </form>
-  {errorMessage && <p className="error-message">{errorMessage}</p>}{" "}
-  </div>
+//   return
+//    <>
+//   <div className="login-form">
+//   <h1>Login</h1>
+//   <form onSubmit={handleSubmit}>
+//     <label>
+//       Username
+//       <input name="userName" type="text" required={true} />
+//     </label>
+//     <label>
+//       Password
+//       <input name="password" type="password" required={true} />
+//     </label>
+//     <button>Login</button>
+//   </form>
+//   {errorMessage && <p className="error-message">{errorMessage}</p>}{" "}
+//   </div>
 
-  </>;
+//   </>;
+// }
+return (
+  <>
+    <div className="login-form">
+      <h1>Login</h1>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Username
+          <input name="userName" type="text" required={true} />
+        </label>
+        <label>
+          Password
+          <input name="password" type="password" required={true} />
+        </label>
+        <button>Login</button>
+      </form>
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
+    </div>
+  </>
+);
 }

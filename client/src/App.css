@@ -14,9 +14,11 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  background-color: rgb(173, 218, 218);
 }
 
 .App {
+
   height: 100%;
   display: flex;
   flex-direction: column;
