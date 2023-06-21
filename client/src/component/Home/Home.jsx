@@ -22,37 +22,46 @@ const HomePage = () => {
         {/* <Link to="/signup" className="cta-button">Get Started</Link> */}
       </div>
 
-      {/* <section className="featured-section">
-        <h2>Featured Artists</h2>
-     
-      </section> */}
+
 
       <section className="genres-section">
         <h2>Explore Genres</h2>
         <div className="card-container">
           <div className="card">
-            <img src={cover1b} className="card-image" alt="Genre 1" />
+             <Link to={`/details/647af85db1187698767f514b`}>
+                <img className="card-img-top" src={cover1b} alt="" />
+              </Link>
+            {/* <img src={cover1b} className="card-image" alt="Genre 1" /> */}
             <div className="card-body">
               <h5 className="card-title">Bati</h5>
-              {/* <p className="card-text">Description of Genre 1.</p> */}
+             
             </div>
           </div>
           <div className="card">
-            <img src={cover2an} className="card-image" alt="Genre 1" />
+          <Link to={`/details/64807784ca04b8f8b8df39e8`}>
+                <img className="card-img-top" src={cover2an} alt="" />
+              </Link>
+            {/* <img src={cover2an} className="card-image" alt="Genre 1" /> */}
             <div className="card-body">
               <h5 className="card-title">Anchihoye</h5>
-              {/* <p className="card-text">Description of Genre 1.</p> */}
+           
             </div>
           </div>
           <div className="card">
-            <img src={cover3t} className="card-image" alt="Genre 2" />
+            {/* <img src={cover3t} className="card-image" alt="Genre 2" /> */}
+            <Link to={`/details/647c5048d30942cc59c5cf06`}>
+                <img className="card-img-top" src={cover3t} alt="" />
+              </Link>
             <div className="card-body">
               <h5 className="card-title">Tizita</h5>
-              {/* <p className="card-text">Description of Genre 2.</p> */}
+            
             </div>
           </div>
           <div className="card">
-            <img src={cover4am} className="card-image" alt="Genre 3" />
+          <Link to={`/details/647c4dd0d30942cc59c5cf04`}>
+                <img className="card-img-top" src={cover4am} alt="" />
+              </Link>
+            {/* <img src={cover4am} className="card-image" alt="Genre 3" /> */}
             <div className="card-body">
               <h5 className="card-title">Ambase</h5>
               {/* <p className="card-text">Description of Genre 3.</p> */}
@@ -87,13 +96,10 @@ const HomePage = () => {
 </div>
       </section>
 
-      {/* <section className="playlists-section">
-        <h2>Curated Playlists</h2>
-    
-      </section> */}
+
 
       <section className="recommendations-section">
-        <h2>Personalized Recommendations</h2>
+        <h2>Recommendations</h2>
         <div className="row">
           <div className="col-sm-4">
             <div className="card">
@@ -103,8 +109,8 @@ const HomePage = () => {
                 alt="Recommendation 1"
               />
               <div className="card-body">
-                <h5 className="card-title">Recommendation 1</h5>
-                <p className="card-text">Description of recommendation 1.</p>
+                <h5 className="card-title">Azmari -አዝማሪ </h5>
+                <p className="card-text">Azmari comparable to medieval European minstrels or bard </p>
               </div>
             </div>
           </div>
@@ -116,8 +122,8 @@ const HomePage = () => {
                 alt="Recommendation 2"
               />
               <div className="card-body">
-                <h5 className="card-title">Recommendation 2</h5>
-                <p className="card-text">Description of recommendation 2.</p>
+                <h5 className="card-title">Krar - ክራር </h5>
+                <p className="card-text"> Ethipian traditional musics </p>
               </div>
             </div>
           </div>
@@ -129,18 +135,15 @@ const HomePage = () => {
                 alt="Recommendation 3"
               />
               <div className="card-body">
-                <h5 className="card-title">Recommendation 3</h5>
-                <p className="card-text">Description of recommendation 3.</p>
+                <h5 className="card-title">Mulatu Astatke</h5>
+                <p className="card-text">The man who created 'Ethio jazz</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="testimonials-section">
-        <h2>What People Are Saying</h2>
-        {/* Display testimonials or reviews */}
-      </section>
+  
 
     
     </div>
@@ -148,3 +151,4 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
