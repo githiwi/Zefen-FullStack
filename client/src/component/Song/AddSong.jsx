@@ -10,10 +10,10 @@ const AddSong = () => {
 
   const [artists, setArtists] = useState([]);
   const [genres, setGenres] = useState([
-    "Bati",
-    "Ambasel",
-    "Anchihoye",
-    "Tizita",
+    { id: "647af85db1187698767f514b", name: "Bati" },
+    { id: "647c4dd0d30942cc59c5cf04", name: "Ambasel" },
+    { id: "64807784ca04b8f8b8df39e8", name: "Anchihoye" },
+    { id: "647c5048d30942cc59c5cf06", name: "Tizita" },
   ]);
 
   useEffect(() => {
@@ -89,8 +89,8 @@ const AddSong = () => {
             onChange={(e) => setGener(e.target.value)}
           >
             {genres.map((g) => (
-              <option key={g} value={g}>
-                {g}
+              <option key={g.id} value={g.id}>
+                {g.name}
               </option>
             ))}
           </select>
