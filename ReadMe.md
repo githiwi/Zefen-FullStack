@@ -31,3 +31,14 @@ this is an option to the user/artist to upload music
 you must sign in/singup to listen or explore the categories and music.
 
 In summary, ZEFEN is an application that offers an immersive and user-friendly experience for those who want to explore Ethiopian music and culture.
+
+## how to run the app
+
+### steps are
+
+    * add the env variables for the node server in .env file
+    * install depdences of the server as: npm i
+    * install depdencies of the client
+        cd to client folder then npm i
+    * from the main dir run the server: node server.js
+    * from the client dir run the client: npm start
