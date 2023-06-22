@@ -37,8 +37,8 @@ In summary, ZEFEN is an application that offers an immersive and user-friendly e
 ### steps are
 
     * add the env variables for the node server in .env file
-    * install depdences of the server as: npm i
-    * install depdencies of the client
+    * install dependencies of the server as: npm i
+    * install dependencies of the client
         cd to client folder then npm i
     * from the main dir run the server: node server.js
     * from the client dir run the client: npm start
