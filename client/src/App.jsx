@@ -22,6 +22,7 @@ import AddSong from "./component/Song/AddSong";
 import Profile from "./component/Profile/Profile";
 import SideBar from "./component/SideBar/SideBar";
 
+
 function App() {
   const [user, setUser] = useState(null); // add a piece of state for the user's data
   // When the app is first loaded, check if there's user data in local storage
@@ -46,6 +47,7 @@ function App() {
       <div className="App">
         {/* <Header /> */}
         <SideBar/>
+        {/* <Side/> */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
