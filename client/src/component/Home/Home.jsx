@@ -17,9 +17,7 @@ const HomePage = () => {
   return (
     <div className="home-page">
       <div className="hero-section">
-        {/* <h1 className="app-title">EthioTunes</h1> */}
-        {/* <p className="tagline">Discover the soul of Ethiopian music</p> */}
-        {/* <Link to="/signup" className="cta-button">Get Started</Link> */}
+      
       </div>
 
 
