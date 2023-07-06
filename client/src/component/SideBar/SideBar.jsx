@@ -1,141 +1,12 @@
-// import React ,{useContext,useState} from 'react'
-// import { Link } from "react-router-dom";
-// import LogoImage from '../../images/logo.png'
-// import avatarImage from '../../images/avator.png'
-// import axios from "../../util/axiosInstance";
-// import UserContext from "../userContext/UserContext";
-
-// export default function SideBar() {
-//     const { user, setUser } = useContext(UserContext);
-//     const [isNavOpen, setIsNavOpen] = useState(false);
-//       const handleSignOut = async () => {
-//     try {
-//       // make a request to your server to end the user's session
-//       await axios.get("/api/users/signout");
-
-//       // clear the user's data from the context
-//       setUser(null);
-//     } catch (error) {
-//       console.error("There was an error signing out", error);
-//     }
-//   };
-//   const handleNavToggle = () => {
-//     console.log("is Open");
-//     setIsNavOpen(!isNavOpen);
-//     console.log("isOpen", isNavOpen);
-//   };
-//   const handleLinkClick = () => {
-//     setIsNavOpen(false); // Close the navigation menu when a link is clicked
-//   };
-
-//   return (
-//     <div>
-//         {/* <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
-//   Link with href
-// </a> */}
-// <button class="btn btn-info" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-// ZEFEN ዘፍን
-// </button>
-
-// <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-//   <div class="offcanvas-header">
-
-//     <Link to="/" className="navbar-logo">
-//         <img src={LogoImage} alt="Zefen Logo" className="logo-image" />
-//       </Link>
-//       <h5 class="offcanvas-title" id="offcanvasExampleLabel">ZEFEN ዘፍን </h5>
-//     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-//   </div>
-//   <div class="offcanvas-body">
-//     <div>
-
-//     This Web app is about the four scales of Ethiopian music.Which are Ambasel ,Bati ,Tizita and Anchihoye. Click on dropdown button to expolore.
-//     </div>
-//     <div class="dropdown mt-3">
-//       <button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown">
-//         Dropdown button
-//       </button>
-
-//       <div className={` ${isNavOpen ? "show" : ""}`}>
-//       <ul class="dropdown-menu">
-//         <li> <Link
-//               className="dropdown-item"
-//               to="/"
-
-//             >
-//               Home
-//             </Link>
-//             <li className="nav-item">
-//             <Link className="nav-link" to="/categories">
-//               Music Genres
-//             </Link>
-//           </li>
-//           <li className="nav-item">
-//             <Link className="nav-link" to="/searchArtist">
-//               Search
-//             </Link>
-//           </li>
-//           <li className="nav-item">
-//             <Link className="nav-link" to="/instruments">
-//               Instruments
-//             </Link>
-//           </li>
-//           <li className="nav-item">
-//             <Link className="nav-link" to="/addSong">
-//               Add Song
-//             </Link>
-//           </li>
-//           <li className="nav-item">
-//             <Link className="nav-link" to="/about">
-//               About
-//             </Link>
-//           </li>
-//           {user ? (
-//             <li className="nav-item">
-//               <div className="d-flex align-items-center">
-//                 <img
-//                   src={avatarImage}
-//                   alt="User avatar"
-//                   className="user-avatar"
-//                 />
-//                 <Link className="nav-link" to="/" onClick={handleSignOut}>
-//                   Sign Out
-//                 </Link>
-//               </div>
-//             </li>
-//           ) : (
-//             <>
-//               <li className="nav-item">
-//                 <Link className="nav-link" to="/signin">
-//                   Login
-//                 </Link>
-//               </li>
-//               <li className="nav-item">
-//                 <Link className="nav-link" to="/signup">
-//                   Signup
-//                 </Link>
-//               </li>
-//             </>
-//              )}
-//           </li>
-
-//       </ul>
-//       </div>
-//     </div>
-//   </div>
-// </div>
-
-//     </div>
-//   )
-// }
-
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import LogoImage from "../../images/logo.png";
 import avatarImage from "../../images/avator.png";
 import axios from "../../util/axiosInstance";
 import UserContext from "../userContext/UserContext";
+import { Offcanvas } from "bootstrap";
 import "./SideBar.css";
+
 export default function SideBar() {
   const { user, setUser } = useContext(UserContext);
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -152,20 +23,28 @@ export default function SideBar() {
     }
   };
 
-  const handleNavToggle = () => {
-    setIsNavOpen(!isNavOpen);
-  };
+
 
   const handleLinkClick = () => {
-    setIsNavOpen(false); // Close the navigation menu when a link is clicked
+    console.log(offcanvasRef);
+    //btnRef.click();
+    console.log(btnRef);
+    const bsOffCanvas = new Offcanvas(offcanvasRef);
+    console.log("hidden", bsOffCanvas);
+    bsOffCanvas.hide();
+    console.log("hidden");
+    setIsNavOpen(false);
+    // Close the navigation menu when a link is clicked
   };
 
+  const offcanvasRef = useRef(null);
+  const btnRef = useRef(null);
   return (
-    <div>
     <div>
       <button
         class="btn btn-outline-secondary"
         type="button"
+        ref={btnRef}
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasResponsive"
         aria-controls="offcanvasResponsive"
@@ -175,6 +54,7 @@ export default function SideBar() {
 
       <div
         class="offcanvas  offcanvas-start"
+        ref={offcanvasRef}
         tabindex="-1"
         id="offcanvasResponsive"
         aria-labelledby="offcanvasResponsiveLabel"
@@ -201,9 +81,11 @@ export default function SideBar() {
           <ul class="list-group list-group-flush mt-3">
             <li class="list-group-item">
               <Link
-                className="nav-link text-center " 
+                className="nav-link text-center "
                 to="/"
-                onClick={handleLinkClick} data-bs-dismiss="offcanvas"
+                onClick={handleLinkClick}
+                data-bs-target="#offcanvasResponsive"
+                data-bs-dismiss="offcanvas"
               >
                 Home
               </Link>
@@ -212,7 +94,8 @@ export default function SideBar() {
               <Link
                 className="nav-link text-center"
                 to="/categories"
-                onClick={handleLinkClick} data-bs-dismiss="offcanvas"
+                onClick={handleLinkClick}
+                
               >
                 Music Genres
               </Link>
@@ -221,7 +104,7 @@ export default function SideBar() {
               <Link
                 className="nav-link text-center"
                 to="/searchArtist"
-                onClick={handleLinkClick} data-bs-dismiss="offcanvas"
+                onClick={handleLinkClick}
               >
                 Search
               </Link>
@@ -230,7 +113,7 @@ export default function SideBar() {
               <Link
                 className="nav-link text-center"
                 to="/instruments"
-                onClick={handleLinkClick} data-bs-dismiss="offcanvas"
+                onClick={handleLinkClick}
               >
                 Instruments
               </Link>
@@ -239,7 +122,7 @@ export default function SideBar() {
               <Link
                 className="nav-link text-center"
                 to="/addSong"
-                onClick={handleLinkClick} data-bs-dismiss="offcanvas"
+                onClick={handleLinkClick}
               >
                 Add Song
               </Link>
@@ -248,7 +131,7 @@ export default function SideBar() {
               <Link
                 className="nav-link text-center"
                 to="/about"
-                onClick={handleLinkClick} data-bs-dismiss="offcanvas"
+                onClick={handleLinkClick}
               >
                 About
               </Link>
@@ -295,7 +178,6 @@ export default function SideBar() {
           </ul>
         </div>
       </div>
-    </div>
     </div>
   );
 }
