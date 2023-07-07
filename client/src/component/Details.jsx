@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import UserContext from "./userContext/UserContext";
 
 import axios from "../util/axiosInstance";
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 const Details = () => {
   const { user } = useContext(UserContext);
@@ -109,7 +110,7 @@ const Details = () => {
               <h5 className="card-title">{song.title}</h5>
               <p className="card-text">{song.artist}</p>
               <audio controls className="mt-2">
-              <source src={process.env.REACT_APP_BACKEND_URL + song.musicUrl} type="audio/mp3" />
+              <source src={BACKEND_URL + song.musicUrl} type="audio/mp3" />
                 Your browser does not support the audio element.
               </audio>
 
