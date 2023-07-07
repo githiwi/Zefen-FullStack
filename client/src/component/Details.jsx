@@ -3,7 +3,9 @@ import { useParams } from "react-router-dom";
 import UserContext from "./userContext/UserContext";
 
 import axios from "../util/axiosInstance";
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+
+const BACKEND_URL ="https://zefenmusicapp.onrender.com/";
+// const BACKEND_URL=http://localhost:4000/
 
 const Details = () => {
   const { user } = useContext(UserContext);

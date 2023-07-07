@@ -1,6 +1,7 @@
 import React from "react";
 
-const BACKEND_URL ="https://zefenmusicapp.onrender.com";
+const BACKEND_URL ="https://zefenmusicapp.onrender.com/";
+// const BACKEND_URL=http://localhost:4000/
 
 export default function Card({ artist }) {
 
