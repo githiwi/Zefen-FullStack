@@ -85,7 +85,7 @@ export default function SideBar() {
                 to="/"
                 onClick={handleLinkClick}
                 data-bs-target="#offcanvasResponsive"
-                data-bs-dismiss="offcanvas"
+              
               >
                 Home
               </Link>

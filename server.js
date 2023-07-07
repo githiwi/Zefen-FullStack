@@ -42,8 +42,11 @@ mongoose
     console.log(error.message);
     console.log("🤨");
   });
-app.use("/api/song",  passport.authenticate("jwt", { session: false }),songRoute);
-app.use("/api/artist", passport.authenticate("jwt", { session: false }), artistRoute);
+
+// app.use("/api/song",  passport.authenticate("jwt", { session: false }),songRoute);
+// app.use("/api/artist", passport.authenticate("jwt", { session: false }), artistRoute);
+app.use("/api/song", songRoute);
+app.use("/api/artist", artistRoute);
 app.use("/api/zefens", zefenRoutes);
 app.use("/api/users", userRoute);
 
