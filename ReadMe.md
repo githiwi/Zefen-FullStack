@@ -26,9 +26,9 @@ the About page provides an overview of the web application. For the future, this
 
 this is an option to the user/artist to upload music
 
-## Signin/signup
+## Sign-in/Sign-up
 
-you must sign in/singup to listen or explore the categories and music.
+you must sign in/sing up to listen or explore the categories and music.
 
 In summary, ZEFEN is an application that offers an immersive and user-friendly experience for those who want to explore Ethiopian music and culture.
 
