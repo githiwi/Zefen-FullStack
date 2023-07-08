@@ -3,12 +3,14 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Categories.css";
-import axios from "axios";
+import axiosApiInstance from "../../util/axiosInstance";
 
 import ImageBati from '../../images/bati_2.jpg'
 import ImageAbasel from '../../images/Ambassel_scale.gif'
 import ImageAnchihoye from '../../images/Anchihoye_2.png'
 import ImageTizita from '../../images/tizitaminor_2.png'
+
+
 const CategoriesPage = () => {
 useEffect(()=>{
   fetchGeners()
@@ -17,7 +19,7 @@ useEffect(()=>{
   const [geners,setGeners]= useState([])
   const fetchGeners = async () =>{
     try {
-      const response = await axios.get("http://localhost:4000/api/zefens/geners")
+      const response = await axiosApiInstance.get("/api/zefens/geners")
       setGeners(response.data)
     } catch (error) {
       console.error("error", error);
